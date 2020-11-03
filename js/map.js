@@ -33,7 +33,7 @@ var map = new mapboxgl.Map({
 
 map.scrollZoom.disable();
 
-
+var popup;
 
 
 /* ------- карта України ------- */
@@ -82,6 +82,25 @@ map.on('load', function () {
                 ]
             }
         }, firstSymbolId);
+
+
+        map.on('click', 'schools_data', function(e) {
+            map.getCanvas().style.cursor = 'pointer';
+            popup =  new mapboxgl.Popup()
+                .setLngLat(e.lngLat)
+                .setHTML(e.features[0].properties.MAP_registration_region + ": " + e.features[0].properties[choropleth_column])
+                .addTo(map);
+
+            if(e.features[0].properties.MAP_infections1000 >= 0){
+                popup.setHTML(e.features[0].properties.MAP_registration_region + ": " + e.features[0].properties[choropleth_column])
+
+            } else {
+                popup.setHTML(e.features[0].properties.MAP_registration_region + ": немає даних");
+            }
+
+        });
+
+
     }
 
     function sourceCallback() {
@@ -92,13 +111,7 @@ map.on('load', function () {
 
     map.on('sourcedata', sourceCallback);
 
-    map.on('click', 'schools_data', function(e) {
-        map.getCanvas().style.cursor = 'pointer';
-        new mapboxgl.Popup()
-            .setLngLat(e.lngLat)
-            .setHTML(e.features[0].properties.MAP_registration_region)
-            .addTo(map);
-    });
+
 
     redrawUkraineMap('MAP_infections1000');
 
@@ -107,8 +120,10 @@ map.on('load', function () {
         let selected_layer = d3.select(this).attr("value");
         d3.select(this.parentNode).selectAll(".map_button").classed("active", false);
         d3.select(this).classed("active", true);
+        $('.mapboxgl-popup').remove();
         map.removeLayer('schools_data');
         redrawUkraineMap(selected_layer);
+
     });
 
 
