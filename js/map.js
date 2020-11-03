@@ -2,7 +2,6 @@
  * Created by yevheniia on 09.06.20.
  */
 var default_zoom_u = window.innerWidth > 800 ? 5 : 5;
-var default_zoom_k = window.innerWidth > 800 ? 9 : 8;
 
 var stops_values = [
     [-3, 'white'],
@@ -84,6 +83,14 @@ map.on('load', function () {
             }
         }, firstSymbolId);
     }
+
+    function sourceCallback() {
+        if (map.getSource('schools') && map.isSourceLoaded('schools') && map.isStyleLoaded()) {
+            d3.select("#spinner").remove();
+        }
+    }        //
+
+    map.on('sourcedata', sourceCallback);
 
     map.on('click', 'schools_data', function(e) {
         map.getCanvas().style.cursor = 'pointer';
