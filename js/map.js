@@ -12,8 +12,7 @@ var stops_values = [
     [6, "#feb24c"],
     [9, "#fd8d3c"],
     [15, "#fc4e2a"],
-    [25, "#bd0026"],
-    [60, "#800026"]
+    [60, "#bd0026"]
 ];
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZHJpbWFjdXMxODIiLCJhIjoiWGQ5TFJuayJ9.6sQHpjf_UDLXtEsz8MnjXw';
@@ -25,7 +24,7 @@ var map = new mapboxgl.Map({
     hash: false,
     tap: false,
     attributionControl: false,
-    style: 'https://raw.githubusercontent.com/texty/covid_schools_map/master/dark_matter.json',
+    style: 'https://raw.githubusercontent.com/texty/covid_leisure/main/dark_matter.json',
     center: [31.5, 48.5],
     zoom: default_zoom_u // starting zoom
 });
@@ -50,7 +49,6 @@ map.on('load', function () {
             break;
         }
     }
-
 
 
     //векторні тайли
