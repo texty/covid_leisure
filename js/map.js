@@ -11,8 +11,9 @@ var stops_values = [
     [3, '#fed976'],
     [6, "#feb24c"],
     [9, "#fd8d3c"],
-    [15, "#f03b20"],
-    [60, "#bd0026"]
+    [15, "#fc4e2a"],
+    [25, "#bd0026"],
+    [60, "#800026"]
 ];
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZHJpbWFjdXMxODIiLCJhIjoiWGQ5TFJuayJ9.6sQHpjf_UDLXtEsz8MnjXw';
